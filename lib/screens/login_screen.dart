@@ -20,11 +20,11 @@ class  loginScreenState extends State <loginScreen> {
     final txtPass  = TextField(controller: txtConPass,);
 
     final imgFondo = Opacity(
-      opacity: 0,
+      opacity: 1.0,
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR7sPI5GtEpNMAKR1IWXCl5C2Ugix0AFp2iQ&usqp=CAU')
+            image: NetworkImage('https://i.pinimg.com/564x/c5/b7/23/c5b723ad8841030624ab5cd0ed9b33dc.jpg') //('https://i.pinimg.com/564x/26/e8/c0/26e8c0495b5fd47424ab6605f2a87529.jpg')
               )
             ),
           ),
