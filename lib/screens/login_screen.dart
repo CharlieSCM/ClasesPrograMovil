@@ -40,6 +40,12 @@ class  loginScreenState extends State <loginScreen> {
           ),
         );
 
+    final btnEntrar = FloatingActionButton.extended(
+      icon: Icon(Icons.login),
+      label: Text('Entrar'), 
+      onPressed: (){}
+    );
+
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -77,6 +83,8 @@ class  loginScreenState extends State <loginScreen> {
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+      floatingActionButton: btnEntrar,
     );
        
   }
