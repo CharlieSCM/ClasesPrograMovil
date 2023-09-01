@@ -35,7 +35,7 @@ class  loginScreenState extends State <loginScreen> {
       width: 150,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage('https://i.pinimg.com/564x/26/e8/c0/26e8c0495b5fd47424ab6605f2a87529.jpg')//('https://imgs.search.brave.com/Moj2O8DWj5t2ywnqoEC_V2Lm4gJUJeId39UxkidSGk4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzU0L2M3/LzBkLzU0YzcwZDRl/NWJjMGY1NDk3ZjM5/MWQzODNjNjkwZTJi/LS1oZWFydC1naWYt/YmVhdXRpZnVsLWhl/YXJ0cy5qcGc')
+          image: NetworkImage('https://imgs.search.brave.com/Moj2O8DWj5t2ywnqoEC_V2Lm4gJUJeId39UxkidSGk4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzU0L2M3/LzBkLzU0YzcwZDRl/NWJjMGY1NDk3ZjM5/MWQzODNjNjkwZTJi/LS1oZWFydC1naWYt/YmVhdXRpZnVsLWhl/YXJ0cy5qcGc') // ('https://i.pinimg.com/564x/26/e8/c0/26e8c0495b5fd47424ab6605f2a87529.jpg')//
             )
           ),
         );
