@@ -10,8 +10,9 @@ class MyApp extends StatelessWidget{
 @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: const loginScreen()
+      home: const loginScreen(),
       routes: getRouters(),
+      theme: ThemeData.dark(),
     );
   }
 }
