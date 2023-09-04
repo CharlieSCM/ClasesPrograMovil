@@ -7,8 +7,11 @@ environment:
   sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
+  concentric_transition: ^1.0.3
   flutter:
     sdk: flutter
+
+cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +20,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+assets:
+  - assets/images/
