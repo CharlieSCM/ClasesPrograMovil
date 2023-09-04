@@ -1,5 +1,6 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
+import 'package:login/assets/stylesApp.dart';
 import 'package:login/card_background.dart';
 import 'package:login/routes.dart';
 import 'package:login/screens/login_screen.dart';
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget{
 @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: const Home(),
+      home: const LoginScreen(),
       routes: getRouters(),
-      theme: ThemeData.dark(),
+      theme: StylesApp.darkTheme(context)
     );
   }
 }
