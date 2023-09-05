@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:login/assets/stylesApp.dart';
 import 'package:login/card_background.dart';
 import 'package:login/routes.dart';
-import 'package:login/screens/login_screen.dart';
+//import 'package:login/screens/login_screen.dart';
 import 'package:lottie/lottie.dart';
-
-
 
 void main()=> runApp(MyApp());
 
