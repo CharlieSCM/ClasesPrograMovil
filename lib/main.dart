@@ -4,6 +4,7 @@ import 'package:login/assets/stylesApp.dart';
 import 'package:login/card_background.dart';
 import 'package:login/routes.dart';
 import 'package:login/screens/login_screen.dart';
+import 'package:lottie/lottie.dart';
 
 
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget{
 @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: const LoginScreen(),
+      home:  Home(),
       routes: getRouters(),
       theme: StylesApp.darkTheme(context)
     );
@@ -23,49 +24,61 @@ class MyApp extends StatelessWidget{
 }
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
-  final data = const [
+  final data =  [
     CardBackgroundData(
       title: "Hollow Knight", 
-      subtittle: "Hollow Knight Que nació del Abismo y No se sabe Nada mas Que El esta destinado a Salvar a 'HollowNest' De la Plaga y Más conocida como Una diosa de los Insectos a de 'HollowNest' como 'Radiance' una polilla que en culturas representa la muerte", 
-      image: AssetImage("lib/assets/images/Hollow.png"), 
-      backgroundColor: Color.fromRGBO(0, 10, 56, 1), 
-      titleColor: Colors.pink, 
-      subtitleColor: Colors.purpleAccent,
+      subtittle: "Aquel que nació del abismo y del que no se sabe nada más está destinado a salvar a 'HollowNest' De la Plaga y más conocida como 'Radiance'", 
+      image: const AssetImage("assets/Hollow.png"), 
+      backgroundColor: const Color.fromRGBO(0, 10, 56, 1), 
+      titleColor: Color.fromARGB(255, 0, 103, 110),//Colors.pink, 
+      subtitleColor: Colors.white,//Color.fromARGB(209, 228, 77, 255),
+      background: Lottie.asset("assets/animation_4.json"),
     ),
 
     CardBackgroundData(
-      title: "Señores mantis", 
+      title: "Lores mantis", 
       subtittle: "Son los líderes de la tribu mantis, y sus mejores guerreros. Portan finas lanzas aguijón, y atacan con la velocidad del rayo.", 
-      image: AssetImage("lib/assets/images/mantis.png"), 
-      backgroundColor: Colors.white, 
-      titleColor: Colors.purple, 
-      subtitleColor: Color.fromRGBO(0, 10, 56, 1),
+      image: const AssetImage("assets/mantis.png"), 
+      backgroundColor: Color.fromARGB(255, 0, 103, 110), 
+      titleColor: Color.fromARGB(255, 53, 35, 107),//Colors.purple, 
+      subtitleColor: Colors.white,//Color.fromARGB(255, 0, 0, 0),
+      background: Lottie.asset("assets/animation_2.json"),
     ),
 
     CardBackgroundData(
       title: "Hornet", 
       subtittle: "Habilidosa protectora de las ruinas de Hallownest. Empuña una aguja e hilo.", 
-      image: AssetImage("lib/assets/images/Hornet.png"), 
-      backgroundColor:  Color.fromRGBO(71, 56, 117, 1), 
+      image: const AssetImage("assets/Hornet.png"), 
+      backgroundColor: const Color.fromRGBO(71, 56, 117, 1), 
       titleColor: Colors.yellow, 
       subtitleColor: Colors.white,
+      background: Lottie.asset("assets/animation_3.json"),
     ),
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ConcentricPageView(
-        itemCount: data.length,
-        colors: data.map((e) => e.backgroundColor).toList(),
-        itemBuilder: (int index) {
-          return CardBackground(
-            data: data[index]
-          );
-        },
-      ),
-    );
-  }
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: ConcentricPageView(
+      itemCount: data.length,
+      colors: data.map((e) => e.backgroundColor).toList(),
+      itemBuilder: (int index) {
+        return CardBackground(
+          data: data[index]
+        );
+      },
+    ),
+    floatingActionButton: FloatingActionButton.extended(
+      icon: Icon(Icons.login),
+      label: Text('Login'), 
+      onPressed: () {
+        Navigator.pushNamed(context, '/dash_log');
+      },
+    ),
+    floatingActionButtonLocation: 
+      FloatingActionButtonLocation.centerDocked
+  );
+}
 }

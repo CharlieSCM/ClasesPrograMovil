@@ -1,8 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:login/screens/dashboard_screen.dart';
+import 'package:login/screens/login_screen.dart';
 
 Map<String,WidgetBuilder> getRouters(){
   return{
-    '/dash' : (BuildContext context) => DashboardScreen()
+    '/dash' : (BuildContext context) => DashboardScreen(),
+    '/dash_log' : (BuildContext context) => LoginScreen()
   };
 }

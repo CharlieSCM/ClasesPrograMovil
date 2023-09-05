@@ -7,6 +7,7 @@ class CardBackgroundData{
   final Color backgroundColor;
   final Color titleColor;
   final Color subtitleColor;
+  final Widget? background;
 
   const CardBackgroundData({
     required this.title,
@@ -15,6 +16,7 @@ class CardBackgroundData{
     required this.backgroundColor,
     required this.titleColor,
     required this.subtitleColor,
+    this.background,
   });
 }
 class CardBackground extends StatelessWidget {
@@ -24,26 +26,43 @@ class CardBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Image(image: data.image),
-        Text(
-          data.title.toUpperCase(),
-          style: TextStyle(
-            color: data.titleColor,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1,
+        if (data.background != null) data.background!,
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15, 
+            vertical: 120
+          ),
+          child: Column(
+            children: [
+              Flexible(
+                flex: 20,
+                child: Image(image: data.image),
+              ),
+              const Spacer(flex: 7,),
+              Text(
+                data.title.toUpperCase(),
+                style: TextStyle(
+                  color: data.titleColor,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1,
+                ),
+              ),
+              const Spacer(flex: 1,),
+              Text(
+                data.subtittle,
+                style: TextStyle(
+                  color: data.subtitleColor,
+                  fontSize: 16,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const Spacer(flex: 7,),
+            ],
           ),
         ),
-        Text(
-          data.subtittle,
-          style: TextStyle(
-            color: data.subtitleColor,
-            fontSize: 16,
-          ),
-          textAlign: TextAlign.center,
-        )
       ],
     );
   }
