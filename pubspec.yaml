@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   lottie: ^2.6.0
-  day_night_switch: 1.0.4
+  day_night_switcher: ^0.2.0+1
   concentric_transition: ^1.0.3
   flutter:
     sdk: flutter

@@ -1,5 +1,6 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
+import 'package:login/assets/global_values.dart';
 import 'package:login/assets/stylesApp.dart';
 import 'package:login/card_background.dart';
 import 'package:login/routes.dart';
@@ -13,10 +14,18 @@ class MyApp extends StatelessWidget{
 
 @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      home:  Home(),
-      routes: getRouters(),
-      theme: StylesApp.darkTheme(context)
+    return ValueListenableBuilder(
+      valueListenable: GlobalValues.flagTheme,
+      builder: (context, value, _) {
+        return MaterialApp(
+          home:  Home(),
+          routes: getRouters(),
+          theme: value
+          ? StylesApp.darkTheme(context)
+          : StylesApp.lightTheme(context)
+
+        );
+      }
     );
   }
 }

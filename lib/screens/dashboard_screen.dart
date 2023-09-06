@@ -1,7 +1,16 @@
-import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+import 'package:day_night_switcher/day_night_switcher.dart';
+import 'package:flutter/material.dart';
+import 'package:login/assets/global_values.dart';
+
+class DashboardScreen extends StatefulWidget {
+  DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +41,15 @@ class DashboardScreen extends StatelessWidget {
               title: Text('furitApp'),
               subtitle: Text('Carrucel'),
               onTap: (){},
-            )
-            /*DayNightSwitcher(
-            isDarkModeEnabled: isDarkModeEnabled,
-            onStateChanged: (isDarkModeEnabled) {
+            ),
+            DayNightSwitcher(
+              isDarkModeEnabled: GlobalValues.flagTheme.value,
+              onStateChanged: (isDarkModeEnabled) {
               setState(() {
-                this.isDarkModeEnabled = isDarkModeEnabled;
+                GlobalValues.flagTheme.value = isDarkModeEnabled;
               });
             },
-          ),*/
+          ),
         ],
       ),
     );
