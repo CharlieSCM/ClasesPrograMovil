@@ -34,9 +34,36 @@ class AgendaDB{
       idTask INTEGER PRIMARY KEY,
       nameTask VARCHAR(50),
       dscTask VARCHAR(50),
-      sttTASK BYTE,
-      )
+      sttTask BYTE,
+      );
       ''';
       db.execute(query);
   }
+
+  Future<int> INSERT(String tblName, Map<String,dynamic> data) async {
+    var conexion = await database;
+    return conexion!.insert(tblName, data);
+  }
+
+  Future<int> UPDATE(String tblName, Map<String,dynamic> data) async {
+    var conexion = await database;
+    return conexion!.update(tblName, data, 
+      where: 'idTask = ?', 
+      whereArgs: [data['idTask']]
+    );
+  }
+
+  Future<int> DELETE(String tblName, int idTask) async {
+    var conexion = await database;
+    return conexion!.delete(tblName, 
+      where: 'idTask = ?',
+      whereArgs: [idTask]
+    );
+  }
+  
+  Future<List<?>> GETALLTASK() async{
+    var conexion = await database;
+    var result = conexion!.query('tblTask');
+  }
+
 }
