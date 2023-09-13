@@ -19,6 +19,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         title:  Text('Bienvenidos :)'),
       ),
       drawer: createDrawer(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -41,6 +42,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               title: Text('furitApp'),
               subtitle: Text('Carrucel'),
               onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.task_alt_outlined),
+              trailing: Icon(Icons.chevron_right),
+              title: Text('Task Manager'),
+              onTap: () => Navigator.pushNamed(context, '/task'),
             ),
             DayNightSwitcher(
               isDarkModeEnabled: GlobalValues.flagTheme.value,

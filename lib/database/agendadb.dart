@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:login/models/task_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -61,9 +62,10 @@ class AgendaDB{
     );
   }
   
-  Future<List<?>> GETALLTASK() async{
+  Future<List<TaskModel>> GETALLTASK() async{
     var conexion = await database;
-    var result = conexion!.query('tblTask');
+    var result = await conexion!.query('tblTareas');
+    return result.map((task) => TaskModel.fromMap(task)).toList();
   }
 
 }
