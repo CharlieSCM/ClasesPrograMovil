@@ -25,7 +25,7 @@ class _TaskScreenState extends State<TaskScreen> {
         title: Text('Task Manager'),
         actions: [
           IconButton(
-            onPressed: (){}, 
+            onPressed: () => Navigator.pushNamed(context, '/add'), 
             icon: Icon(Icons.task)
           )
         ],
