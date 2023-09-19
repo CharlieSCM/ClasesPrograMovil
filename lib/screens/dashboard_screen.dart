@@ -2,6 +2,7 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:login/assets/global_values.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({super.key});
@@ -11,6 +12,12 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+  void logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('sessionSaved');
+    Navigator.pushReplacementNamed(context, '/dash_log');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +64,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               });
             },
           ),
+
+          ListTile(
+            leading: Icon(
+                Icons.logout), // Ícono de cerrar sesión o foto relacionada xd
+            title: Text('Cerrar sesión'),
+            onTap: () {
+              logout(); // Llama a la función logout al hacer clic en "Cerrar sesión"
+            },
+          )
         ],
       ),
     );
