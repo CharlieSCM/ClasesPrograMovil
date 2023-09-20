@@ -59,18 +59,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
             DayNightSwitcher(
               isDarkModeEnabled: GlobalValues.flagTheme.value,
               onStateChanged: (isDarkModeEnabled) {
-              setState(() {
                 GlobalValues.flagTheme.value = isDarkModeEnabled;
-              });
-            },
-          ),
+                GlobalValues().guardarValor(isDarkModeEnabled);
+              },
+            ),
 
           ListTile(
             leading: Icon(
-                Icons.logout), // Ícono de cerrar sesión o foto relacionada xd
+                Icons.logout 
+                ),
             title: Text('Cerrar sesión'),
             onTap: () {
-              logout(); // Llama a la función logout al hacer clic en "Cerrar sesión"
+              logout();
             },
           )
         ],

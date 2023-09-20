@@ -9,20 +9,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  bool isSessionSaved =
-      false; // Variable para verificar si la sesión está guardada
+  bool isSessionSaved = false; 
 
   @override
   void initState() {
     super.initState();
-    checkSavedSession(); // Verificar si hay una sesión guardada al iniciar la aplicación
+    checkSavedSession(); 
   }
 
   void checkSavedSession() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? sessionSaved = prefs.getBool('sessionSaved');
     if (sessionSaved != null && sessionSaved) {
-      // Si la sesión está guardada, redirige automáticamente al Dashboard
       Navigator.pushReplacementNamed(context, '/dash');
     }
   }
@@ -92,11 +90,14 @@ class LoginScreenState extends State<LoginScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                opacity: 0.8,
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                    'https://i.pinimg.com/564x/26/e8/c0/26e8c0495b5fd47424ab6605f2a87529.jpg'))),
+          image: DecorationImage(
+            opacity: 0.8,
+              fit: BoxFit.cover,
+              image: NetworkImage(
+                'https://i.pinimg.com/564x/26/e8/c0/26e8c0495b5fd47424ab6605f2a87529.jpg'
+              )
+          )
+        ),
         child: Padding(
           padding: const EdgeInsets.only(bottom: 60.0),
           child: Stack(
@@ -121,7 +122,7 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               imgLogo,
-              sessionCheckboxContainer, // Contenedor con el checkbox para guardar sesión
+              sessionCheckboxContainer,
             ],
           ),
         ),
