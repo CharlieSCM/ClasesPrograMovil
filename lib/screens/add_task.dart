@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/database/agendadb.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
@@ -9,8 +10,6 @@ class AddTask extends StatefulWidget {
 
 class _AddTaskState extends State<AddTask> {
 
-  @override
-  Widget build(BuildContext context) {
     TextEditingController txtConName = TextEditingController();
     TextEditingController txtConDsc = TextEditingController();
     String dropDownValue = "Pendiente";
@@ -18,14 +17,37 @@ class _AddTaskState extends State<AddTask> {
       'Pendiente', 'Completado', 'En Proceso', 'Sin iniciar'
     ];
 
+    AgendaDB? agendaDB;
+
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    agendaDB = AgendaDB();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+
     final txtNameTask = TextField(
+      decoration: InputDecoration(
+        label: Text('Tareas'),
+        border: OutlineInputBorder()
+      ),
       controller: txtConName,
     );
 
     final txtDscTask = TextField(
+      decoration: InputDecoration(
+        label: Text('Tareas'),
+        border: OutlineInputBorder()
+      ),
       maxLines: 6,
       controller: txtConDsc,
     );
+
+    final space = SizedBox(height: 10,);
 
     final DropdownButton ddBStatus = DropdownButton(
       value: dropDownValue,
@@ -42,8 +64,21 @@ class _AddTaskState extends State<AddTask> {
     );
 
     final ElevatedButton btnGuardar = ElevatedButton(
-      onPressed: (){}, 
-      child: Text('Add Task')
+      onPressed: (){
+        agendaDB!.INSERT('tblName', {
+          'nameTask': txtConName.text,
+          'dscTask' : txtConDsc.text,
+          'sstTask': dropDownValue.substring(1,1)
+
+        }).then((value){
+          var msj = (value > 0)
+        ? 'Las insercion fue exitosa'
+        : 'Ocurrio un error';
+          var snackBar = const SnackBar(content: Text('Saved text'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }); 
+      }, 
+      child: Text('Save Task')
     );
 
     return Scaffold(
@@ -51,10 +86,14 @@ class _AddTaskState extends State<AddTask> {
         title: Text('Add Task'),
       ),
       body: Column(
+        
         children: [
           txtNameTask,
+          space,
           txtDscTask,
-          ddBStatus
+          space,
+          ddBStatus,
+          btnGuardar
         ],
       ),
     );

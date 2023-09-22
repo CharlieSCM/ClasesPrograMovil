@@ -35,7 +35,7 @@ class AgendaDB{
       idTask INTEGER PRIMARY KEY,
       nameTask VARCHAR(50),
       dscTask VARCHAR(50),
-      sttTask BYTE,
+      sttTask BYTE
       );
       ''';
       db.execute(query);

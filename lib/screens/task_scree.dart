@@ -37,7 +37,7 @@ class _TaskScreenState extends State<TaskScreen> {
             return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index){
-                  
+                  return CardTask();
                 }
               );
           }else{
