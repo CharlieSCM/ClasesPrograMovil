@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:login/assets/global_values.dart';
 import 'package:login/database/agendadb.dart';
 import 'package:login/models/task_model.dart';
+import 'package:login/screens/add_task.dart';
 
 class CardTaskWidget extends StatefulWidget {
   CardTaskWidget(
@@ -40,7 +41,17 @@ class _CardTaskWidgetState extends State<CardTaskWidget> {
             ),
           Column(
             children: [
-              Image.asset('assets/fresa.pgn', height: 50,),
+              GestureDetector(
+                onTap: ()=> Navigator.push( 
+                  context,
+                  MaterialPageRoute(
+                    builder: (context)=>
+                    AddTask(taskModel: taskModel
+                    )
+                  )
+                ),
+                child: Image.asset('assets/fresa.pgn', height: 50,),
+              ),
               IconButton(onPressed: (){
                 showDialog(
                   context: context, 
