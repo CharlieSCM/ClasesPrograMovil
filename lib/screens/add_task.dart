@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/assets/global_values.dart';
 import 'package:login/database/agendadb.dart';
 import 'package:login/models/task_model.dart';
 
@@ -83,19 +84,37 @@ class _AddTaskState extends State<AddTask> {
 
     final ElevatedButton btnGuardar = ElevatedButton(
       onPressed: (){
-        agendaDB!.INSERT('tblName', {
+        if(widget.taskModel == null){
+        agendaDB!.INSERT('tblTareas', { 
           'nameTask': txtConName.text,
-          'dscTask' : txtConDsc.text,
-          'sstTask': dropDownValue!.substring(0,1)
-
+          'dscTask': txtConDsc.text,
+          'sttTask': dropDownValue!.substring(0,1)
         }).then((value){
-          var msj = (value > 0)
-        ? 'Las insercion fue exitosa'
-        : 'Ocurrio un error';
-          var snackBar = const SnackBar(content: Text('Saved text'));
+          var msj = (value > 0) 
+          ? 'La insercion fue correcta' 
+          : 'Error';
+          var snackBar = const SnackBar(content: Text('Task saved'));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }); 
-      }, 
+            Navigator.pop(context);
+        });
+      }else{
+         agendaDB!.UPDATE('tblTareas', {
+          'idTask' : widget.taskModel!.idTask, 
+          'nameTask': txtConName.text,
+          'dscTask': txtConDsc.text,
+          'sttTask': dropDownValue!.substring(0,1)
+          }).then((value) {
+            GlobalValues.flagTask.value = !GlobalValues.flagTask.value;
+            var msj = (value > 0) 
+            ? 'La insercion fue correcta' 
+            : 'Error';
+            var snackBar = const SnackBar(
+            content: Text('Task saved'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            Navigator.pop(context);
+          });
+        }
+      },
       child: Text('Save Task')
     );
 

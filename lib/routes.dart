@@ -12,6 +12,6 @@ Map<String,WidgetBuilder> getRouters(){
     '/dash_log' : (BuildContext context) => LoginScreen(),
     '/task' : (BuildContext context) => TaskScreen(),
     '/add' : (BuildContext context) => AddTask(),
-    '/popular' : (BuildContext context) => PopulasScreen()
+    '/popular' : (BuildContext context) => PopularScreen()
   };
 }
