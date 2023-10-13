@@ -1,11 +1,13 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:login/assets/global_values.dart';
+import 'package:login/assets/provider/test_provider.dart';
 import 'package:login/assets/stylesApp.dart';
 import 'package:login/card_background.dart';
 import 'package:login/routes.dart';
 //import 'package:login/screens/login_screen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 void main()=> runApp(MyApp());
 
@@ -28,13 +30,16 @@ class _MyAppState extends State<MyApp> {
     return ValueListenableBuilder(
       valueListenable: GlobalValues.flagTheme,
       builder: (context, value, _) {
-        return MaterialApp(
-          home:  Home(),
-          routes: getRouters(),
-          theme: value
-          ? StylesApp.darkTheme(context)
-          : StylesApp.lightTheme(context)
-
+        return ChangeNotifierProvider(
+          create: (context) => TestProvider(),
+          child: MaterialApp(
+            home:  Home(),
+            routes: getRouters(),
+            theme: value
+            ? StylesApp.darkTheme(context)
+            : StylesApp.lightTheme(context)
+        
+          ),
         );
       }
     );

@@ -60,7 +60,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
             leading: Icon(Icons.task_alt_outlined),
             trailing: Icon(Icons.chevron_right),
             title: Text('Movies'),
-            onTap: () => Navigator.pushNamed(context, '/popular'), //Popular Model
+            onTap: () => Navigator.pushNamed(context, '/popular'), 
+          ),
+          ListTile(
+            leading: Icon(Icons.task_alt_outlined),
+            trailing: Icon(Icons.chevron_right),
+            title: Text('Test Provider'),
+            onTap: () => Navigator.pushNamed(context, '/prov'), 
           ),
             DayNightSwitcher(
               isDarkModeEnabled: GlobalValues.flagTheme.value,
