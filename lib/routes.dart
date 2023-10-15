@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:login/models/popular_model.dart';
 import 'package:login/screens/add_task.dart';
 import 'package:login/screens/dashboard_screen.dart';
 import 'package:login/screens/detail_movie_screen.dart';
@@ -16,6 +15,8 @@ Map<String,WidgetBuilder> getRouters(){
     '/add' : (BuildContext context) => AddTask(),
     '/popular' : (BuildContext context) => PopularScreen(),
     '/detail' :(BuildContext context) => DetailMovieScreenState(),
-    '/prov' :(BuildContext context) => ProviderScreen() 
+    '/prov' :(BuildContext context) => ProviderScreen(),
+    '/profe' :(BuildContext context) => ProfesorScreen(),
+    '/carrera' :(BuildContext context) => CarreraScreen() 
   };
 }

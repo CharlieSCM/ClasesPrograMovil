@@ -4,6 +4,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:login/models/carrera_model.dart';
+import 'package:login/models/profesor_model.dart';
 import 'package:login/models/task_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -38,9 +40,33 @@ class AgendaDB{
       idTask INTEGER PRIMARY KEY,
       nameTask VARCHAR(50),
       dscTask VARCHAR(50),
-      sttTask BYTE
+      sttTask BYTE,
+      fecExpiracion DateTime,
+      fecRecordatorio DateTime,
+      idProfe INTEGER,
+      FOREING KEY (idProfe) REFERENCES tblProfesor(idProfe)
       );
       ''';
+
+    String queryP = '''
+    CREATE TABLE tblProfesor(
+      idProfe INTEGER PRIMARY KEY,
+      nomProfe VARCHAR(50),
+      email VARCHAR(50),
+      idCarrera INTEGER,
+      FOREING KEY (idCarrera) REFERENCES tblCarrera(idCarrera)
+    );
+     ''';
+
+    String queryC = '''
+    CREATE TABLE tblCarrera(
+      idCarrera INTEGER PRIMARY KEY,
+      nomCarrera VARCHAR(50)
+    );
+    ''';
+
+      db.execute(queryC);
+      db.execute(queryP);
       db.execute(query);
   }
 
@@ -69,6 +95,18 @@ class AgendaDB{
     var conexion = await database;
     var result = await conexion!.query('tblTareas');
     return result.map((task) => TaskModel.fromMap(task)).toList();
+  }
+
+  Future<List<ProfesorModel>> GETALLPROFE() async{
+    var conexion = await database;
+    var result = await conexion!.query('tblProfesor');
+    return result.map((profe) => ProfesorModel.fromMap(profe)).toList();
+  }
+
+  Future<List<CarreraModel>> GETALLCARRERA() async{
+    var conexion = await database;
+    var result = await conexion!.query('tblCarrera');
+    return result.map((carrera) => CarreraModel.fromMap(carrera)).toList();
   }
 
 }
