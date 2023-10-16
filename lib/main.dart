@@ -1,7 +1,7 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:login/assets/global_values.dart';
-import 'package:login/assets/provider/test_provider.dart';
+import 'package:login/provider/test_provider.dart';
 import 'package:login/assets/stylesApp.dart';
 import 'package:login/card_background.dart';
 import 'package:login/routes.dart';
