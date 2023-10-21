@@ -1,67 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:login/database/agendaDB.dart';
+import 'package:login/database/agendadb.dart';
 import 'package:login/models/task_model.dart';
 import 'package:login/assets/global_values.dart';
 import 'package:login/screens/add_task.dart';
 
-class CardTaskWidget extends StatelessWidget {
-  CardTaskWidget({super.key, required this.taskModel, 
-    this.agendaDB});
+class TaskCardWidget extends StatelessWidget {
+  TaskCardWidget({super.key, required this.taskModel, this.agendadb});
 
   TaskModel taskModel;
-  AgendaDB? agendaDB;
+  AgendaDB? agendadb;
 
   @override
-  
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.all(10),
-      decoration: const BoxDecoration(  
-        color: Colors.amber
-      ),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(color: Colors.green),
       child: Row(
         children: [
           Column(
             children: [
               Text(taskModel.nameTask!),
-              Text(taskModel.dscTask!)
+              Text(taskModel.dscTask!),
+              Text('${taskModel.sttTask!}'),
+              Text(taskModel.fecExpiracion!),
+              Text(taskModel.fecRecordatorio!),
+              Text('${taskModel.idProfe!}')
             ],
           ),
           Expanded(child: Container()),
           Column(
             children: [
               GestureDetector(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AddTask(taskModel: taskModel))) ,
-                child: Image.asset('assets/fresa.png',height: 50,)
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddTask(
+                              taskModel: taskModel,
+                            ))),
+                child: Image.asset(
+                  'assets/fresa.png',
+                  height: 50,
                 ),
+              ),
               IconButton(
-                onPressed: (){
-                  showDialog(
-                    context: context, 
-                    builder: (context){
-                    return AlertDialog(
-                      title: Text('Mensaje del sistema'),
-                      content: const Text('¿Deseas eliminar la tarea?'),
-                      actions: [
-                        TextButton(onPressed: (){
-                          agendaDB!.DELETE('tblTareas', taskModel.idTask!).then((value){
-                            Navigator.pop(context);
-                            GlobalValues.flagTask.value = !GlobalValues.flagTask.value;
-                          });
-                        }, child: Text('Si')),
-                        TextButton(
-                          onPressed:()=>Navigator.pop(context), child: Text('No')
-                          )
-
-                      ],
-                    );
-                  },);
-                }, 
-              icon: Icon(Icons.delete)
-              )
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('System Message'),
+                            content:
+                                const Text('¿Do you want to delete this task?'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    agendadb!
+                                        .DELETE('tblTareas', 'idTask',
+                                            taskModel.idTask!, null)
+                                        .then((value) {
+                                      Navigator.pop(context);
+                                      GlobalValues.flag_database.value =
+                                          !GlobalValues.flag_database.value;
+                                    });
+                                  },
+                                  child: const Text('Yes')),
+                              TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text('No'))
+                            ],
+                          );
+                        });
+                  },
+                  icon: const Icon(Icons.delete))
             ],
           )
+          //Column()
         ],
       ),
     );

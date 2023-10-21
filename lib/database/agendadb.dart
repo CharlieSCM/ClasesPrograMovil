@@ -72,20 +72,33 @@ class AgendaDB{
     return conexion!.insert(tblName, data);
   }
 
-  Future<int> UPDATE(String tblName, Map<String,dynamic> data) async {
-    var conexion = await database;
-    return conexion!.update(tblName, data, 
-      where: 'idTask = ?', 
-      whereArgs: [data['idTask']]
-    );
+
+  Future<int> UPDATE(
+    String tName, String field, Map<String, dynamic> data) async {
+      var connection = await database;
+      return connection!.update(tName, data, where: '$field = ?', whereArgs: [data[field]]);
   }
 
-  Future<int> DELETE(String tblName, int idTask) async {
-    var conexion = await database;
+  Future<int> DELETE(String tblName, String field, int objectId, String? childTable) async {
+    /*var conexion = await database;
     return conexion!.delete(tblName, 
       where: 'idTask = ?',
       whereArgs: [idTask]
-    );
+    );*/
+     var connection = await database;
+    if (childTable != null) {
+      final dependentRows = await connection!
+          .rawQuery("select * from $childTable where $field = $objectId");
+      if (dependentRows.isEmpty) {
+        return connection
+            .delete(tblName, where: '$field = ?', whereArgs: [objectId]);
+      } else {
+        return 0;
+      }
+    } else {
+      return connection!
+          .delete(tblName, where: '$field = ?', whereArgs: [objectId]);
+    }
   }
   
   Future<List<TaskModel>> GETALLTASK() async{
@@ -100,10 +113,62 @@ class AgendaDB{
     return result.map((profe) => ProfesorModel.fromMap(profe)).toList();
   }
 
-  Future<List<CarreraModel>> GETALLCARRERA() async{
+  Future<List<CarreraModel>> GETALLCARRERA  () async{
     var conexion = await database;
     var result = await conexion!.query('tblCarrera');
     return result.map((carrera) => CarreraModel.fromMap(carrera)).toList();
+  }
+
+  Future<CarreraModel> GETCAREER(int objectId) async {
+    var connection = await database;
+    var result = await connection!
+        .query('tblCarrera', where: 'idCarrera = ?', whereArgs: [objectId]);
+    return result.map((career) => CarreraModel.fromMap(career)).toList().first;
+  }
+
+  Future<ProfesorModel> GETTEACHER(int objectId) async {
+    var connection = await database;
+    var result = await connection!
+        .query('tblProfesor', where: 'idProfesor = ?', whereArgs: [objectId]);
+    return result
+        .map((teacher) => ProfesorModel.fromMap(teacher))
+        .toList()
+        .first;
+  }
+
+  Future<void> DELETEALL(table) async {
+    var connection = await database;
+    await connection!.delete(table, where: '1=1');
+  }
+
+  Future<List<CarreraModel>> GETFILTEREDCAREERS(String input) async {
+    var connection = await database;
+    var sql = "select * from tblCarrera where nomCarrera like '%$input%'";
+    var result = await connection!.rawQuery(sql);
+    return result.map((career) => CarreraModel.fromMap(career)).toList();
+  }
+
+  Future<List<ProfesorModel>> GETFILTEREDTEACHERS(String input) async {
+    var connection = await database;
+    var sql = "select * from tblProfesor where nomProfe like '%$input%'";
+    var result = await connection!.rawQuery(sql);
+    return result.map((teacher) => ProfesorModel.fromMap(teacher)).toList();
+  }
+
+  Future<List<TaskModel>> GETFILTEREDTASKS(String input, int? input2) async {
+    var connection = await database;
+    var sql = input2 != null
+        ? "select * from tblTareas where nameTask like '%$input%' and sttTask = $input2"
+        : "select * from tblTareas where nameTask like '%$input%'";
+    var result = await connection!.rawQuery(sql);
+    return result.map((task) => TaskModel.fromMap(task)).toList();
+  }
+
+  Future<List<TaskModel>> GETUNFINISHEDTASKS() async {
+    var connection = await database;
+    var sql = "select * from tblTareas where sttTask = 0";
+    var result = await connection!.rawQuery(sql);
+    return result.map((task) => TaskModel.fromMap(task)).toList();
   }
 
 }

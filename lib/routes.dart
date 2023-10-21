@@ -1,5 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:login/screens/add_carrera.dart';
+import 'package:login/screens/add_profe.dart';
 import 'package:login/screens/add_task.dart';
+import 'package:login/screens/calendario_screen.dart';
 import 'package:login/screens/carrera_screen.dart';
 import 'package:login/screens/dashboard_screen.dart';
 import 'package:login/screens/detail_movie_screen.dart';
@@ -13,13 +16,16 @@ import 'package:login/screens/task_scree.dart';
 Map<String,WidgetBuilder> getRouters(){
   return{
     '/dash' : (BuildContext context) => DashboardScreen(),
-    '/dash_log' : (BuildContext context) => LoginScreen(),
-    '/task' : (BuildContext context) => TaskScreen(),
+    '/dash_log' : (BuildContext context) => const LoginScreen(),
+    '/task' : (BuildContext context) => const TaskScreen(),
     '/add' : (BuildContext context) => AddTask(),
-    '/popular' : (BuildContext context) => PopularScreen(),
-    '/detail' :(BuildContext context) => DetailMovieScreenState(),
-    '/prov' :(BuildContext context) => ProviderScreen(),
-    '/profe' :(BuildContext context) => ProfesorScreen(),
-    '/carrera' :(BuildContext context) => CarreraScreen(),
+    '/popular' : (BuildContext context) => const PopularScreen(),
+    '/detail' :(BuildContext context) => const DetailMovieScreenState(),
+    '/prov' :(BuildContext context) => const ProviderScreen(),
+    '/profe' :(BuildContext context) => const ProfeScreen(),
+    '/carrera' :(BuildContext context) => const CarreraScreen(),
+    '/addCareer' :(BuildContext context) => AddCareerScreen(),
+    '/addTeacher': (BuildContext context) => AddProfesor(),
+    '/calendar': (BuildContext context) => const CalendarScreen(),
   };
 }

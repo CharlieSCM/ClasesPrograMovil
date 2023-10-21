@@ -2,13 +2,14 @@ class TaskModel {
   int? idTask;
   String? nameTask;
   String? dscTask;
-  String? sttTask;
-  DateTime? fecExpiracion;
-  DateTime? fecRecordatorio;
+  int? sttTask;
+  String? fecExpiracion;
+  String? fecRecordatorio;
   int? idProfe;
 
   TaskModel({this.idTask, this.nameTask, this.dscTask, this.sttTask, this.fecExpiracion, 
               this.fecRecordatorio, this.idProfe});
+              
   factory TaskModel.fromMap(Map<String,dynamic> map){
     return TaskModel(
       idTask: map['idTask'],
