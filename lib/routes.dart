@@ -21,7 +21,7 @@ Map<String,WidgetBuilder> getRouters(){
     '/task' : (BuildContext context) => const TaskScreen(),
     '/add' : (BuildContext context) => AddTask(),
     '/popular' : (BuildContext context) => const PopularScreen(),
-    '/detail' :(BuildContext context) => const DetailMovieScreenState(),
+    //'/detail' :(BuildContext context) => const DetailMovieScreenState(),
     '/prov' :(BuildContext context) => const ProviderScreen(),
     '/profe' :(BuildContext context) => const ProfeScreen(),
     '/carrera' :(BuildContext context) => const CarreraScreen(),
