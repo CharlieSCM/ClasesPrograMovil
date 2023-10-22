@@ -78,8 +78,8 @@ Widget teacherWidget(ProfesorModel teacher, BuildContext context) {
                                         type: ArtSweetAlertType.warning));
 
                             if (response.isTapConfirmButton) {
-                              var res = await agendadb.DELETE('Profe',
-                                  'teacher_id', teacher.idProfe!, 'tasks');
+                              var res = await agendadb.DELETE('tblProfesor',
+                                  'idProfe', teacher.idProfe!, 'tblTareas');
                               if (res == 0) {
                                 ArtSweetAlert.show(
                                     context: context,

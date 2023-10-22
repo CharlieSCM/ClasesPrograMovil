@@ -30,7 +30,7 @@ class _TaskScreenState extends State<TaskScreen> {
   }
 
   Future deleteAll() async {
-    agendadb!.DELETEALL('tasks');
+    agendadb!.DELETEALL('tblTareas');
   }
 
   Future<void> notifyNearTasks() async {
@@ -82,7 +82,7 @@ class _TaskScreenState extends State<TaskScreen> {
                           text:
                               "Registra por lo menos un profesor para agregar tareas"));
                 } else {
-                  Navigator.pushNamed(context, '/addTask');
+                  Navigator.pushNamed(context, '/add');
                 }
               },
               icon: const Icon(Icons.add))

@@ -31,7 +31,7 @@ void initState(){
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/carrera');
+                Navigator.pushNamed(context, '/addCareer');
               },
               icon: const Icon(Icons.add))
         ],

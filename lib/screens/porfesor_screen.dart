@@ -39,7 +39,7 @@ class _ProfeScreenState extends State<ProfeScreen> {
                           text:
                               "Registra por lo menos una carrera para agregar profesores"));
                 } else {
-                  Navigator.pushNamed(context, '/profesor');
+                  Navigator.pushNamed(context, '/addTeacher');
                 }
               },
               icon: const Icon(Icons.add))

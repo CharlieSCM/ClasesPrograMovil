@@ -1,83 +1,9 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
-import 'package:login/assets/global_values.dart';
-import 'package:login/provider/test_provider.dart';
-import 'package:login/assets/stylesApp.dart';
 import 'package:login/card_background.dart';
-import 'package:login/routes.dart';
-import 'package:login/screens/dashboard_screen.dart';
-import 'package:login/screens/login_screen.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
-  }
-
-class MyApp extends StatefulWidget{
-  const MyApp({super.key});
-  //const MyApp({Key? key}) :super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool? isLogged;
-  bool? savedTheme;
-@override
-  void initState() {
-    getLogginData();
-    getThemeData();
-    super.initState();
-    //GlobalValues().leerValor();
-  }
-
-  Future getLogginData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var logged = prefs.getBool('isLogged');
-    setState(() {
-      isLogged = logged;
-    });
-  }
-
-  Future getThemeData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (!prefs.containsKey('darkTheme')) {
-      prefs.setBool('darkTheme', true);
-    }
-    var theme = prefs.getBool('darkTheme');
-    setState(() {
-      savedTheme = theme;
-      GlobalValues.flagTheme.value = savedTheme!;
-    });
-  }
-
-@override
-  Widget build(BuildContext context){
-    return ValueListenableBuilder(
-      valueListenable: GlobalValues.flagTheme,
-      builder: (context, value, _) {
-        return ChangeNotifierProvider(
-          create: (context) => TestProvider(),
-          child: MaterialApp(
-            home:  isLogged == true 
-              ? const DashboardScreen()
-              : const LoginScreen(),
-            routes: getRouters(),
-            theme: value
-            ? StylesApp.darkTheme(context)
-            : StylesApp.lightTheme(context)
-        
-          ),
-        );
-      }
-    );
-  }
-}
-
-/*class Home extends StatelessWidget {
+class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
   final data =  [
@@ -135,4 +61,4 @@ Widget build(BuildContext context) {
       FloatingActionButtonLocation.centerDocked
   );
 }
-}*/
+}

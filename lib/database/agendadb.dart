@@ -32,18 +32,12 @@ class AgendaDB{
 
   FutureOr<void> _createTables(Database db, int version) {
     //las ''' es la forma de indicar un query
-    String query = '''
-    CREATE TABLE tblTareas(
-      idTask INTEGER PRIMARY KEY,
-      nameTask VARCHAR(50),
-      dscTask VARCHAR(50),
-      sttTask BYTE,
-      fecExpiracion DateTime,
-      fecRecordatorio DateTime,
-      idProfe INTEGER,
-      FOREING KEY (idProfe) REFERENCES tblProfesor(idProfe)
-      );
-      ''';
+    String queryC = '''
+    CREATE TABLE tblCarrera(
+      idCarrera INTEGER PRIMARY KEY,
+      nomCarrera VARCHAR(50)
+    );
+    ''';
 
     String queryP = '''
     CREATE TABLE tblProfesor(
@@ -51,16 +45,22 @@ class AgendaDB{
       nomProfe VARCHAR(50),
       email VARCHAR(50),
       idCarrera INTEGER,
-      FOREING KEY (idCarrera) REFERENCES tblCarrera(idCarrera)
+      FOREIGN KEY (idCarrera) REFERENCES tblCarrera(idCarrera)
     );
      ''';
 
-    String queryC = '''
-    CREATE TABLE tblCarrera(
-      idCarrera INTEGER PRIMARY KEY,
-      nomCarrera VARCHAR(50)
-    );
-    ''';
+    String query = '''
+    CREATE TABLE tblTareas(
+      idTask INTEGER PRIMARY KEY,
+      nameTask VARCHAR(50),
+      dscTask VARCHAR(50),
+      sttTask INTEGER,
+      fecExpiracion VARCHAR(100),
+      fecRecordatorio VARCHAR(100),
+      idProfe INTEGER,
+      FOREIGN KEY (idProfe) REFERENCES tblProfesor(idProfe)
+      );
+      ''';
 
       db.execute(queryC);
       db.execute(queryP);
@@ -129,7 +129,7 @@ class AgendaDB{
   Future<ProfesorModel> GETTEACHER(int objectId) async {
     var connection = await database;
     var result = await connection!
-        .query('tblProfesor', where: 'idProfesor = ?', whereArgs: [objectId]);
+        .query('tblProfesor', where: 'idProfe = ?', whereArgs: [objectId]);
     return result
         .map((teacher) => ProfesorModel.fromMap(teacher))
         .toList()
