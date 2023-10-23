@@ -51,7 +51,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ListTile(
             leading: Image.asset('assets/fresa.png'),
             trailing: const Icon(Icons.chevron_right),
-            title: const Text('Instituto Tecnologico de Celaya'),
+            title: const Text('Nosotros'),
             subtitle: const Text('Acerca de...'),
             onTap: () {
               //Navigator.pushNamed(context, '/item');
@@ -60,7 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ListTile(
             leading: Icon(Icons.task_alt_outlined),
             trailing: const Icon(Icons.chevron_right),
-            title: const Text('Administrador Carreras'),
+            title: const Text('Carreras'),
             onTap: () {
               Navigator.pushNamed(context, '/carrera');
             },
@@ -69,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ListTile(
             leading: Icon(Icons.task_alt_outlined),
             trailing: const Icon(Icons.chevron_right),
-            title: const Text('Administrador Profesores'),
+            title: const Text('Profesores'),
             onTap: () {
               Navigator.pushNamed(context, '/profe');
             },
@@ -77,7 +77,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ListTile(
             leading: Icon(Icons.task_alt_outlined),
             trailing: const Icon(Icons.chevron_right),
-            title: const Text('Administrador Tareas'),
+            title: const Text('Tareas'),
             onTap: () {
               Navigator.pushNamed(context, '/task');
             },

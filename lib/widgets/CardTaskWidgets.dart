@@ -51,7 +51,7 @@ class TaskCardWidget extends StatelessWidget {
                           return AlertDialog(
                             title: const Text('System Message'),
                             content:
-                                const Text('¿Do you want to delete this task?'),
+                                const Text('Quiere borrar la tarea?'),
                             actions: [
                               TextButton(
                                   onPressed: () {
@@ -64,7 +64,7 @@ class TaskCardWidget extends StatelessWidget {
                                           !GlobalValues.flag_database.value;
                                     });
                                   },
-                                  child: const Text('Yes')),
+                                  child: const Text('Si')),
                               TextButton(
                                   onPressed: () => Navigator.pop(context),
                                   child: const Text('No'))

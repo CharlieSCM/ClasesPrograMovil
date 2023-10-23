@@ -72,10 +72,11 @@ Widget teacherWidget(ProfesorModel teacher, BuildContext context) {
                                     barrierDismissible: false,
                                     context: context,
                                     artDialogArgs: ArtDialogArgs(
-                                        denyButtonText: "Cancelar",
-                                        title: "Segurito?",
+                                        denyButtonText: "No",
+                                        title: "Esta seguro de esto?",
                                         confirmButtonText: "Si",
-                                        type: ArtSweetAlertType.warning));
+                                        //type: ArtSweetAlertType.question
+                                        ));
 
                             if (response.isTapConfirmButton) {
                               var res = await agendadb.DELETE('tblProfesor',
@@ -87,7 +88,7 @@ Widget teacherWidget(ProfesorModel teacher, BuildContext context) {
                                         type: ArtSweetAlertType.danger,
                                         title: "¡Error!",
                                         text:
-                                            "There are tasks which are registered with this teacher"));
+                                            "Cascada"));
                               }
                               GlobalValues.flag_database.value =
                                   !GlobalValues.flag_database.value;
@@ -99,7 +100,7 @@ Widget teacherWidget(ProfesorModel teacher, BuildContext context) {
                               padding:
                                   MaterialStateProperty.all(EdgeInsets.zero)),
                           child: const Icon(
-                            Icons.delete,
+                            Icons.clear,
                             size: 14,
                           )),
                     )
@@ -111,7 +112,7 @@ Widget teacherWidget(ProfesorModel teacher, BuildContext context) {
         } else {
           if (snapshot.hasError) {
             return const Center(
-              child: Text("Something Was Wrong"),
+              child: Text("Error"),
             );
           } else {
             return const CircularProgressIndicator();

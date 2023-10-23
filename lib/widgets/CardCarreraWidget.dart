@@ -58,10 +58,11 @@ Widget careerWidget(CarreraModel career, BuildContext context) {
                         barrierDismissible: false,
                         context: context,
                         artDialogArgs: ArtDialogArgs(
-                            denyButtonText: "Cancel",
-                            title: "Are you sure?",
-                            confirmButtonText: "Yes",
-                            type: ArtSweetAlertType.warning));
+                            denyButtonText: "No",
+                            title: "Esta seguro de esto?",
+                            confirmButtonText: "Si",
+                            //type: ArtSweetAlertType.question
+                            ));
 
                     if (response.isTapConfirmButton) {
                       var res = await agendadb.DELETE('tblCarrera', 'idCarrera',
@@ -73,7 +74,7 @@ Widget careerWidget(CarreraModel career, BuildContext context) {
                                 type: ArtSweetAlertType.danger,
                                 title: "¡Error!",
                                 text:
-                                    "There are teachers who are registered with this career"));
+                                    "Cascada"));
                       }
                       GlobalValues.flag_database.value =
                           !GlobalValues.flag_database.value;
@@ -83,7 +84,7 @@ Widget careerWidget(CarreraModel career, BuildContext context) {
                       backgroundColor: MaterialStateProperty.all(Colors.red),
                       padding: MaterialStateProperty.all(EdgeInsets.zero)),
                   child: const Icon(
-                    Icons.delete,
+                    Icons.clear,
                     size: 14,
                   )),
             )

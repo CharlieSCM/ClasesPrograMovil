@@ -47,10 +47,10 @@ class _TaskScreenState extends State<TaskScreen> {
     }
     if (tomorrowTasks != 0) {
       NotificationProvider.showBigTextNotification(
-        title: "Alert!",
+        title: "Hey checa",
         body: tomorrowTasks != 1
-            ? "You have $tomorrowTasks pending tasks for tomorrow"
-            : "You have $tomorrowTasks pending task for tomorrow",
+            ? "Tiene $tomorrowTasks pendiente"
+            : "Tiene $tomorrowTasks pendiente",
       );
     }
   }
@@ -68,7 +68,7 @@ class _TaskScreenState extends State<TaskScreen> {
         });
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Administrador de Tareas'),
+        title: const Text('Tareas'),
         actions: [
           IconButton(
               onPressed: () async {
@@ -287,7 +287,7 @@ class _TaskScreenState extends State<TaskScreen> {
                         } else {
                           if (snapshot.hasError) {
                             return const Center(
-                              child: Text('Something Was Wrong'),
+                              child: Text('Error'),
                             );
                           } else {
                             return const Center(
@@ -303,12 +303,13 @@ class _TaskScreenState extends State<TaskScreen> {
               ],
             );
           }),
+      /*
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/calendar');
         },
         child: const Icon(Icons.calendar_month_outlined),
-      ),
+      ),*/
     );
   }
 }

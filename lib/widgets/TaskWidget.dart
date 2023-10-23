@@ -54,7 +54,7 @@ Widget taskWidget(TaskModel task, BuildContext context) {
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.green)),
                         child: const Icon(
-                          Icons.edit_document,
+                          Icons.edit,
                           size: 14,
                         ),
                       ),
@@ -71,10 +71,11 @@ Widget taskWidget(TaskModel task, BuildContext context) {
                                     barrierDismissible: false,
                                     context: context,
                                     artDialogArgs: ArtDialogArgs(
-                                        denyButtonText: "Cancel",
-                                        title: "Are you sure?",
-                                        confirmButtonText: "Yes",
-                                        type: ArtSweetAlertType.warning));
+                                        denyButtonText: "No",
+                                        title: "Esta seguro de esto?",
+                                        confirmButtonText: "Si",
+                                        //type: ArtSweetAlertType.question
+                                        ));
 
                             if (response.isTapConfirmButton) {
                               agendadb.DELETE(
@@ -89,7 +90,7 @@ Widget taskWidget(TaskModel task, BuildContext context) {
                               padding:
                                   MaterialStateProperty.all(EdgeInsets.zero)),
                           child: const Icon(
-                            Icons.delete_forever_rounded,
+                            Icons.clear,
                             size: 14,
                           )),
                     )
@@ -101,7 +102,7 @@ Widget taskWidget(TaskModel task, BuildContext context) {
         } else {
           if (snapshot.hasError) {
             return const Center(
-              child: Text("Something Was Wrong"),
+              child: Text("Error"),
             );
           } else {
             return const CircularProgressIndicator();

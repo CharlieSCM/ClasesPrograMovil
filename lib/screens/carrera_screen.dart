@@ -27,7 +27,7 @@ void initState(){
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Administrador de Carreras'),
+        title: const Text('Carreras'),
         actions: [
           IconButton(
               onPressed: () {

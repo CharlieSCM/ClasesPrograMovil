@@ -25,7 +25,7 @@ class _ProfeScreenState extends State<ProfeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Administrador de Profes'),
+        title: const Text('Profes'),
         actions: [
           IconButton(
               onPressed: () async {
