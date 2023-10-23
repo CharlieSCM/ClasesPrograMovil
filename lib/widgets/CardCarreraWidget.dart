@@ -5,7 +5,6 @@ import 'package:login/models/carrera_model.dart';
 import 'package:login/screens/add_carrera.dart';
 import 'package:login/assets/global_values.dart';
 
-
 Widget careerWidget(CarreraModel career, BuildContext context) {
   AgendaDB? agendadb = AgendaDB();
 
@@ -58,11 +57,11 @@ Widget careerWidget(CarreraModel career, BuildContext context) {
                         barrierDismissible: false,
                         context: context,
                         artDialogArgs: ArtDialogArgs(
-                            denyButtonText: "No",
-                            title: "Esta seguro de esto?",
-                            confirmButtonText: "Si",
-                            //type: ArtSweetAlertType.question
-                            ));
+                          title: "Esta seguro de esto?",
+                          confirmButtonText: "Si",
+                          denyButtonText: "No",
+                          //type: ArtSweetAlertType.question
+                        ));
 
                     if (response.isTapConfirmButton) {
                       var res = await agendadb.DELETE('tblCarrera', 'idCarrera',
@@ -71,10 +70,9 @@ Widget careerWidget(CarreraModel career, BuildContext context) {
                         ArtSweetAlert.show(
                             context: context,
                             artDialogArgs: ArtDialogArgs(
-                                type: ArtSweetAlertType.danger,
+                                //type: ArtSweetAlertType.danger,
                                 title: "¡Error!",
-                                text:
-                                    "Cascada"));
+                                text: "Cascada"));
                       }
                       GlobalValues.flag_database.value =
                           !GlobalValues.flag_database.value;

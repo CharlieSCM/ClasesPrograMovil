@@ -85,7 +85,7 @@ Widget teacherWidget(ProfesorModel teacher, BuildContext context) {
                                 ArtSweetAlert.show(
                                     context: context,
                                     artDialogArgs: ArtDialogArgs(
-                                        type: ArtSweetAlertType.danger,
+                                        //type: ArtSweetAlertType.danger,
                                         title: "¡Error!",
                                         text:
                                             "Cascada"));
