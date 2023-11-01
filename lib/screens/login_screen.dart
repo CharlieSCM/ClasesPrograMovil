@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/firebase/email_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -6,10 +7,12 @@ class LoginScreen extends StatefulWidget {
 
   @override
   State<LoginScreen> createState() => LoginScreenState();
+
 }
 
 class LoginScreenState extends State<LoginScreen> {
   bool isSessionSaved = false; 
+  final emailAuth = EmailAuth();
 
   @override
   void initState() {
@@ -49,16 +52,22 @@ class LoginScreenState extends State<LoginScreen> {
     final imgLogo = Container(
       width: 250,
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                  'https://upload.wikimedia.org/wikipedia/fr/8/88/Hollow_Knight_Logo.png'))),
+        image: DecorationImage(
+          image: NetworkImage(
+            'https://upload.wikimedia.org/wikipedia/fr/8/88/Hollow_Knight_Logo.png'
+          )
+        )
+      ),
     );
 
     final btnEntrar = FloatingActionButton.extended(
       icon: Icon(Icons.login),
       label: Text('Entrar'),
-      onPressed: () {
-        // Guardar la sesión si el checkbox está marcado
+      onPressed: () async {
+        bool res = await emailAuth.validateUser(emailUser: txtConUser.text, pwdUser: txtConPass.text);
+        if (res) {
+          Navigator.pushNamed(context, '/dash');
+        }
         saveSession(isSessionSaved);
 
         Navigator.pushNamed(context, '/dash');
@@ -122,6 +131,11 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               imgLogo,
+              TextButton(onPressed: ()=>Navigator.pushNamed(context, '/register'), 
+              child: Text('Registrarse :)',
+              style: TextStyle(fontSize: 20),
+                )
+              ),
               sessionCheckboxContainer,
             ],
           ),

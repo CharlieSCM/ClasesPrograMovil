@@ -12,6 +12,7 @@ import 'package:login/screens/popular_screen.dart';
 import 'package:login/screens/porfesor_screen.dart';
 import 'package:login/screens/provider_screen.dart';
 import 'package:login/screens/task_scree.dart';
+import 'package:login/screens/register_screen.dart';
 //import 'package:login/screens/calendar_screen.dart';
 
 Map<String,WidgetBuilder> getRouters(){
@@ -29,5 +30,6 @@ Map<String,WidgetBuilder> getRouters(){
     '/addTeacher': (BuildContext context) => AddProfesor(),
     '/calendar': (BuildContext context) => const CalendarScreen(),
     '/hollow' : (BuildContext context) => Home(),
+    '/register' : (BuildContext context) => RegisterScreen(),
   };
 }
