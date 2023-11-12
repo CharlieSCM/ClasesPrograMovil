@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/screens/register_screen.dart';
+//import 'package:login/screens/register_screen.dart';
 import 'package:login/firebase/email_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
